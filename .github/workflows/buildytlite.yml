@@ -347,14 +347,14 @@ jobs:
         if: inputs.ythold == true && steps.cache_tweaks.outputs.cache_ythold_hit != 'true'
         run: |
           git clone --quiet --depth=1 https://github.com/joshuaseltzer/YTHoldForSpeed.git
-          cd YTHoldForSpeed && make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64 TARGET=iphone:clang:18.6
+          cd YTHoldForSpeed && make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64 TARGET=iphone:clang:18.6:14.0
           mv packages/*.deb ${{ github.workspace }}/ythold.deb
 
       - name: Clone and Build VolumeBoostYT
         if: inputs.volumeboost == true && steps.cache_tweaks.outputs.cache_volumeboost_hit != 'true'
         run: |
           git clone --quiet --depth=1 https://github.com/VasirakCalgux/VolumeBoostYT.git
-          cd VolumeBoostYT && make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64
+          cd VolumeBoostYT && make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64 TARGET=iphone:clang:18.6:14.0
           mv packages/*.deb ${{ github.workspace }}/volumeboost.deb
 
       - name: Clone and Build YTNativeShare
@@ -363,7 +363,7 @@ jobs:
           git clone --quiet --depth=1 https://github.com/jkhsjdhjs/youtube-native-share.git
           cd youtube-native-share
           git clone --quiet --depth=1 https://github.com/protocolbuffers/protobuf.git
-          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64
+          make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64 TARGET=iphone:clang:18.6:14.0
           mv packages/*.deb ${{ github.workspace }}/nativeshare.deb
 
       - name: Clone and Build PleaseDontStopTheMusic
@@ -371,7 +371,7 @@ jobs:
         run: |
           git clone --quiet --depth=1 https://github.com/mikey820/PleaseDontStopTheMusic.git
           cd PleaseDontStopTheMusic
-          make -C rootless clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64
+          make -C rootless clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless ARCHS=arm64 TARGET=iphone:clang:18.6:14.0
           mv rootless/packages/*.deb ${{ github.workspace }}/pleasedontstopthemusic.deb
           
       - name: Inject Tweaks Into IPA
